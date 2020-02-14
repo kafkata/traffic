@@ -1,17 +1,18 @@
 package com.kafkata.traffic
 
-import scala.util.Random
+import com.kafkata.traffic.construction.Randoms
+import play.api.libs.json.{Format, Json}
 
-case class Position(x: Int, y: Int) {
-	def nextPosition(): Position = {
-		Position(x + 1, y - 1)
-	}
-}
+case class Position(x: Int, y: Int)
 
 object Position {
-	val r = new Random()
+
+	implicit val dataPointFormat: Format[Position] = Json.format[Position]
 
 	def random(): Position = {
-		Position(r.nextInt(1000), r.nextInt(1000))
+		Position(
+			Randoms.pickRandomBetween(-1000, 1000),
+			Randoms.pickRandomBetween(-1000, 1000)
+		)
 	}
 }

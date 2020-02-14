@@ -1,7 +1,12 @@
 package com.kafkata.traffic
 
 import com.kafkata.traffic.car.Car
+import play.api.libs.json.{Format, Json}
 
-case class DataPoint(c: Car, p: Position) {
-	override def toString: String = s"${c.id},${p.x},${p.y}"
+case class DataPoint(car: Car, position: Position)
+
+object DataPoint {
+
+	implicit val dataPointFormat: Format[DataPoint] = Json.format[DataPoint]
+
 }

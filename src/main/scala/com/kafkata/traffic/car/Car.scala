@@ -1,7 +1,7 @@
 package com.kafkata.traffic.car
 
 import com.kafkata.traffic.construction.Randoms
-import play.api.libs.json.{Format, JsPath, Json, OFormat, Writes}
+import play.api.libs.json.{Format, Json}
 
 
 case class Car(id: String, brand: String, numOfDoors: Int, color: String, weight: Int, petrolConsumption: Int)
