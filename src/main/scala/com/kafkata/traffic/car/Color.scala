@@ -1,6 +1,6 @@
 package com.kafkata.traffic.car
 
-import scala.util.Random
+import com.kafkata.traffic.construction.Randoms
 
 sealed trait Color
 
@@ -12,12 +12,10 @@ case object White extends Color
 
 object Color {
 
-	private val random = Random
 	val AllColors = Seq(Green, Yellow, Black, Red, White)
 
 	def pickRandom(): Color = {
-		val pick = random.nextInt(AllColors.length)
-		AllColors(pick)
+		Randoms.pickRandomFrom(AllColors)
 	}
 
 }

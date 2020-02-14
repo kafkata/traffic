@@ -2,6 +2,8 @@ package com.kafkata.traffic
 
 import java.io.{BufferedWriter, File, PrintWriter}
 
+import com.kafkata.traffic.car.Car
+
 object Main {
 
 	val numOfCars = 100000
@@ -20,7 +22,7 @@ object Main {
 		val carsFile = new File(carsPath)
 		carsFile.createNewFile()
 
-		val cars = 0.to(numOfCars).map(Car(_))
+		val cars = 0.to(numOfCars).map(Car.construct)
 
 		val datasetWriter = new BufferedWriter(new PrintWriter(datasetFile))
 

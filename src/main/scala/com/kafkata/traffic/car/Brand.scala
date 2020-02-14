@@ -1,5 +1,7 @@
 package com.kafkata.traffic.car
 
+import com.kafkata.traffic.construction.Randoms
+
 import scala.util.Random
 
 sealed trait Brand
@@ -16,8 +18,7 @@ object Brand {
 	val AllBrands = Seq(VW, BMW, Mercedes, Peugeot, Skoda)
 
 	def pickRandom(): Brand = {
-		val pick = r.nextInt(AllBrands.length)
-		AllBrands(pick)
+		Randoms.pickRandomFrom(AllBrands)
 	}
 
 }
