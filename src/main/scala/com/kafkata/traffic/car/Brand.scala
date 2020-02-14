@@ -2,19 +2,24 @@ package com.kafkata.traffic.car
 
 import scala.util.Random
 
+sealed trait Brand
+
+case object VW extends Brand
+case object BMW extends Brand
+case object Mercedes extends Brand
+case object Peugeot extends Brand
+case object Skoda extends Brand
+
 object Brand {
-	sealed trait EnumVal
-	case object VW extends EnumVal
-	case object BMW extends EnumVal
-	case object Mercedes extends EnumVal
-	case object Peugeot extends EnumVal
-	case object Skoda extends EnumVal
 
-	val allBrands = Seq(VW, BMW, Mercedes, Peugeot, Skoda)
+	private val r = Random
+	val AllBrands = Seq(VW, BMW, Mercedes, Peugeot, Skoda)
 
-	def pickRandom(): EnumVal = {
-		val r = Random
-		val pick = r.nextInt(allBrands.length)
-		allBrands(pick)
+	def pickRandom(): Brand = {
+		val pick = r.nextInt(AllBrands.length)
+		AllBrands(pick)
 	}
+
 }
+
+

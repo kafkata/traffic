@@ -2,19 +2,22 @@ package com.kafkata.traffic.car
 
 import scala.util.Random
 
+sealed trait Color
+
+case object Green extends Color
+case object Yellow extends Color
+case object Black extends Color
+case object Red extends Color
+case object White extends Color
+
 object Color {
-	sealed trait EnumVal
-	case object Green extends EnumVal
-	case object Yellow extends EnumVal
-	case object Black extends EnumVal
-	case object Red extends EnumVal
-	case object White extends EnumVal
 
-	val allColors = Seq(Green, Yellow, Black, Red, White)
+	private val random = Random
+	val AllColors = Seq(Green, Yellow, Black, Red, White)
 
-	def pickRandom(): EnumVal = {
-		val r = Random
-		val pick = r.nextInt(allColors.length)
-		allColors(pick)
+	def pickRandom(): Color = {
+		val pick = random.nextInt(AllColors.length)
+		AllColors(pick)
 	}
+
 }

@@ -20,13 +20,13 @@ object Main {
 		val carsFile = new File(carsPath)
 		carsFile.createNewFile()
 
-		val cars = (0.to(numOfCars)).map(Car(_))
+		val cars = 0.to(numOfCars).map(Car(_))
 
 		val datasetWriter = new BufferedWriter(new PrintWriter(datasetFile))
 
-		(0.to(numOfSteps)).foreach{ step =>
+		0.to(numOfSteps).foreach{ step =>
 			if (step % logEveryXStep == 0) {
-				println(s"Step: ${step}/${numOfSteps}")
+				println(s"Step: $step/$numOfSteps")
 			}
 
 			cars.foreach{ c =>
