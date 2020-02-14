@@ -2,25 +2,36 @@ package com.kafkata.traffic.car
 
 import com.kafkata.traffic.construction.Randoms
 
-import scala.util.Random
+sealed trait Brand {
+	val value: String
+}
 
-sealed trait Brand
+case object VW extends Brand {
+	val value = "vw"
+}
 
-case object VW extends Brand
-case object BMW extends Brand
-case object Mercedes extends Brand
-case object Peugeot extends Brand
-case object Skoda extends Brand
+case object BMW extends Brand {
+	val value = "bmw"
+}
+
+case object Mercedes extends Brand {
+	val value = "mercedes"
+}
+
+case object Peugeot extends Brand {
+	val value = "peugeot"
+}
+
+case object Skoda extends Brand {
+	val value = "skoda"
+}
 
 object Brand {
 
-	private val r = Random
-	val AllBrands = Seq(VW, BMW, Mercedes, Peugeot, Skoda)
+  val AllBrands = Seq(VW, BMW, Mercedes, Peugeot, Skoda)
 
-	def pickRandom(): Brand = {
-		Randoms.pickRandomFrom(AllBrands)
-	}
+  def pickRandom(): String = {
+    Randoms.pickRandomFrom(AllBrands).value
+  }
 
 }
-
-

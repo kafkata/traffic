@@ -1,10 +1,14 @@
 package com.kafkata.traffic.car
 
 import com.kafkata.traffic.construction.Randoms
+import play.api.libs.json.{Format, JsPath, Json, OFormat, Writes}
 
-case class Car(id: String, brand: Brand, numOfDoors: Int, colour: Color, weight: Int, petrolConsumption: Int)
+
+case class Car(id: String, brand: String, numOfDoors: Int, color: String, weight: Int, petrolConsumption: Int)
 
 object Car {
+
+	implicit val carFormat: Format[Car] = Json.format[Car]
 
 	def construct(id: Int): Car = {
 		val brand = Brand.pickRandom()
