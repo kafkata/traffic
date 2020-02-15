@@ -1,6 +1,7 @@
 package com.kafkata.traffic
 
 import java.io.{BufferedWriter, File, FileOutputStream, OutputStreamWriter}
+import java.time.Instant
 import java.util.zip.GZIPOutputStream
 
 import com.kafkata.traffic.car.Car
@@ -22,15 +23,19 @@ object Main {
 
     writeCarsToFile(cars)
 
-    val datasetWriter = createGzipFileWriter(datasetPath);
+    val datasetWriter = createGzipFileWriter(datasetPath)
+
+    val now = System.currentTimeMillis()
 
     0.to(numOfSteps).foreach { step =>
       if (step % logEveryXStep == 0) {
         println(s"Step: $step/$numOfSteps. ${computeRuntime(startTime, System.currentTimeMillis())} seconds")
       }
 
+      val timestamp = now + 1000
+
       cars.foreach { c =>
-        val dp = DataPoint(c, Position.random())
+        val dp = DataPoint(c, Position.random(), timestamp)
         datasetWriter.write(Json.stringify(Json.toJson(dp)))
         datasetWriter.newLine()
       }
