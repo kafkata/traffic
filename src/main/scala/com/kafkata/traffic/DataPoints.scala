@@ -11,7 +11,7 @@ import com.typesafe.scalalogging.LazyLogging
 object DataPoints extends LazyLogging {
 
   def main(args: Array[String]): Unit = {
-    write(0.to(numOfCars).map(Car.construct))
+    //write(0.to(numOfCars).map(Car.construct))
     read()
   }
 
@@ -39,8 +39,8 @@ object DataPoints extends LazyLogging {
 
       val timestamp = startTime + 1000
 
-      cars.foreach { c =>
-        val dp = DataPoint(c, Position.random(), timestamp)
+      cars.foreach { car =>
+        val dp = DataPoint(car.id, Position.random(), timestamp)
         os.write(dp)
       }
     }

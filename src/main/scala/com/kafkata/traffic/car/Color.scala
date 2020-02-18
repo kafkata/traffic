@@ -7,23 +7,23 @@ sealed trait Color {
 }
 
 case object Green extends Color {
-	val value = "green"
+	val value: String = "green"
 }
 
 case object Yellow extends Color {
-	val value = "yellow"
+	val value: String = "yellow"
 }
 
 case object Black extends Color {
-	val value = "black"
+	val value: String = "black"
 }
 
 case object Red extends Color {
-	val value = "red"
+	val value: String = "red"
 }
 
 case object White extends Color {
-	val value = "white"
+	val value: String = "white"
 }
 
 object Color {
