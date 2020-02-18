@@ -3,7 +3,6 @@ package com.kafkata.traffic
 import java.io.{File, FileInputStream, FileOutputStream}
 import java.util.zip.{GZIPInputStream, GZIPOutputStream}
 
-import com.kafkata.traffic.Cars.numOfCars
 import com.kafkata.traffic.car.Car
 import com.sksamuel.avro4s.{AvroInputStream, AvroOutputStream}
 import com.typesafe.scalalogging.LazyLogging
@@ -11,12 +10,12 @@ import com.typesafe.scalalogging.LazyLogging
 object DataPoints extends LazyLogging {
 
   def main(args: Array[String]): Unit = {
-    //write(0.to(numOfCars).map(Car.construct))
+    write(0.to(Cars.numOfCars).map(Car.construct))
     read()
   }
 
   val resolutionSeconds = 1
-  val numOfSteps = 600
+  val numOfSteps = 10
   val logEveryXStep = 100
   val dataPointsPath = "output/dataset.avro.gz"
 
@@ -46,6 +45,8 @@ object DataPoints extends LazyLogging {
     }
 
     os.close()
+
+    logger.info(s"Runtime: ${(System.currentTimeMillis() - startTime) / 1000} seconds")
   }
 
   def read(): Unit = {
@@ -58,7 +59,11 @@ object DataPoints extends LazyLogging {
     val dataPoints = is.iterator.take(1000).toList
     is.close()
 
-    logger.info(dataPoints.mkString("\n"))
+    //logger.info(dataPoints.mkString("\n"))
+
+    logger.info(s"distance in km between first two: ${dataPoints.head.position.distanceInKilometersTo(dataPoints.tail.head.position)}")
   }
+
+
 
 }

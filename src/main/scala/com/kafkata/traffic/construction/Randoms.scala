@@ -15,4 +15,8 @@ object Randoms {
     random.between(lower, upper)
   }
 
+  def pickRandomBetween(lower: Double, upper: Double): Double = {
+    random.between(lower, upper)
+  }
+
 }

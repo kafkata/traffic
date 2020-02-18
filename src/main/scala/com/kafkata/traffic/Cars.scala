@@ -10,7 +10,7 @@ import com.typesafe.scalalogging.LazyLogging
 object Cars extends LazyLogging {
 
   def main(args: Array[String]): Unit = {
-    write(0.to(numOfCars).map(Car.construct))
+    write(0.to(Cars.numOfCars).map(Car.construct))
     read()
   }
 
